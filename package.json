@@ -1,0 +1,17 @@
+{
+  "name": "gfn-reel-cutter",
+  "version": "0.1.0",
+  "description": "Personal PWA to trim, join and render 9:16 Instagram reels",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}

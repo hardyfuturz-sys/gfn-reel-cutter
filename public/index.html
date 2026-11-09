@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GFN Reel Cutter</title>
+  <meta name="theme-color" content="#0B1B3F">
+  <meta name="description" content="Trim, join and render Instagram reels in one tap.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo">GFN</span>
+      <div>
+        <h1>Reel Cutter</h1>
+        <p class="sub">Trim the pauses. Get a 9:16 reel.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Passcode -->
+    <section id="login" class="card hidden">
+      <h2>Enter passcode</h2>
+      <form id="loginForm">
+        <input id="passcode" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Passcode" required>
+        <button class="btn primary" type="submit">Unlock</button>
+      </form>
+      <p id="loginError" class="error hidden"></p>
+    </section>
+
+    <!-- Editor -->
+    <section id="editor" class="hidden">
+      <div class="card">
+        <div class="row between">
+          <h2>Clips</h2>
+          <span id="totalSize" class="muted"></span>
+        </div>
+        <ul id="clipList" class="clips"></ul>
+        <label class="btn add">
+          <input id="fileInput" type="file" accept="video/*" multiple hidden>
+          <span>＋ Add clips</span>
+        </label>
+        <p class="muted small">Up to 5 clips, 200 MB in total. They're joined in this order. Shoot at 1080p for faster uploads.</p>
+      </div>
+
+      <div class="card">
+        <h2>Settings</h2>
+        <label class="toggle">
+          <input id="removeSilences" type="checkbox" checked>
+          <span class="track"><span class="thumb"></span></span>
+          <span>Remove pauses and dead time</span>
+        </label>
+
+        <div id="pauseGroup" class="field">
+          <span class="label">Cut pauses longer than</span>
+          <div class="seg" data-name="minSilence">
+            <button type="button" data-value="1.0">1 s</button>
+            <button type="button" data-value="0.6" class="on">0.6 s</button>
+            <button type="button" data-value="0.4">0.4 s</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label">Maximum length</span>
+          <div class="seg" data-name="maxDuration">
+            <button type="button" data-value="30">30 s</button>
+            <button type="button" data-value="60" class="on">60 s</button>
+            <button type="button" data-value="90">90 s</button>
+          </div>
+        </div>
+      </div>
+
+      <button id="makeBtn" class="btn primary big" disabled>Make reel</button>
+      <p id="editorError" class="error hidden"></p>
+    </section>
+
+    <!-- Progress -->
+    <section id="progress" class="card hidden">
+      <h2 id="progressTitle">Uploading</h2>
+      <div class="bar"><div id="barFill"></div></div>
+      <p id="progressText" class="muted"></p>
+    </section>
+
+    <!-- Result -->
+    <section id="result" class="hidden">
+      <div class="card">
+        <h2>Your reel is ready</h2>
+        <div class="player"><video id="resultVideo" controls playsinline preload="metadata"></video></div>
+        <ul id="stats" class="stats"></ul>
+        <div class="actions">
+          <a id="downloadBtn" class="btn primary">Download</a>
+          <button id="shareBtn" class="btn hidden">Share to Instagram…</button>
+        </div>
+      </div>
+      <button id="againBtn" class="btn ghost big">Make another reel</button>
+    </section>
+  </main>
+
+  <footer class="foot">app.getfitwithnats.com</footer>
+  <script src="app.js"></script>
+</body>
+</html>
